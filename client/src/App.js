@@ -5,7 +5,11 @@ import memories from "./images/memories.png";
 import Form from "./components/Form/Form";
 import Posts from "./components/Posts/Posts";
 
+import useStyles from "./styles";
+
 const App = () => {
+  const classes = useStyles();
+
   return (
     <Container maxWidth="lg">
       <AppBar position="static" color="inherit">
