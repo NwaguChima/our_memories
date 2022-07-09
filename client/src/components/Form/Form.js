@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FileBase from "react-file-base64";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
@@ -14,8 +15,19 @@ const Form = ({ currentId, setCuttentId }) => {
     tags: "",
     selectedFile: "",
   });
+
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((post) => post._id === currentId) : null
+  );
+
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (post) {
+      setPostData(post);
+    }
+  }, [post]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
