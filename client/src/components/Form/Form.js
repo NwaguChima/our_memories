@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
 
-const Form = ({ currentId, setCuttentId }) => {
+const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -37,9 +37,19 @@ const Form = ({ currentId, setCuttentId }) => {
     } else {
       dispatch(createPost(postData));
     }
+    clear();
   };
 
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
 
   return (
     <Paper className={classes.paper}>
