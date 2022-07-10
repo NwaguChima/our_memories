@@ -5,6 +5,7 @@ const reducer = (posts = [], action) => {
     case "DELETE":
       return posts.filter((post) => post.id !== action.id);
     case "UPDATE":
+    case "LIKE":
       return posts.map((post) =>
         Post._id === post._id ? action.payload : post
       );
