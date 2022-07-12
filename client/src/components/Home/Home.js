@@ -8,7 +8,6 @@ import Form from "../Form/Form";
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(null);
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,7 +19,6 @@ const Home = () => {
       <Container>
         <Grid
           container
-          className={classes.mainContainer}
           justifyContent="space-between"
           alignItems="stretch"
           spacing={3}
