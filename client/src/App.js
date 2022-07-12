@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Container, Grow, Grid } from "@material-ui/core";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React from "react";
+import { Container } from "@material-ui/core";
+import { BrowserRouter, Router, Route } from "react-router-dom";
 
-import { getPosts } from "./actions/posts";
-import Form from "./components/Form/Form";
-import Posts from "./components/Posts/Posts";
-
-import useStyles from "./styles";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
+import Auth from "./components/Auth/Auth";
 
 const App = () => {
   return (
-    <Container maxWidth="lg">
-      <Navbar />
-      <Home />
-    </Container>
+    <BrowserRouter>
+      <Container maxWidth="lg">
+        <Navbar />
+        <Router>
+          <Route path="/" exact component={Home} />
+          <Route path="/auth" component={Auth} />
+        </Router>
+      </Container>
+    </BrowserRouter>
   );
 };
 
