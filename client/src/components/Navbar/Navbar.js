@@ -18,14 +18,9 @@ const Navbar = () => {
           variant="h2"
           align="center"
         >
-          Memories share
+          Memories
         </Typography>
-        <img
-          className={classes.image}
-          src={memories}
-          alt="memories"
-          height="60"
-        />
+        <img className={classes.image} src={memories} alt="icon" height="60" />
       </div>
       <Toolbar className={classes.toolbar}>
         {user ? (
