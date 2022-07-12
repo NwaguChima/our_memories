@@ -30,13 +30,15 @@ const Auth = () => {
           <Grid container spacing={2}>
             {isSignup && (
               <>
-                <TextField
-                  name="firstName"
-                  label="First Name"
-                  handleChange={handleChange}
-                  autoFocus
-                  xs={6}
-                />
+                <Grid xs={6} md={12}>
+                  <TextField
+                    name="firstName"
+                    label="First Name"
+                    handleChange={handleChange}
+                    autoFocus
+                    xs={6}
+                  />
+                </Grid>
               </>
             )}
           </Grid>
