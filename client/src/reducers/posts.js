@@ -7,22 +7,27 @@ import {
   FETCH_BY_SEARCH,
 } from "../constants/actionTypes";
 
-const reducer = (posts = [], action) => {
+const reducer = (state = [], action) => {
   switch (action.type) {
     case DELETE:
-      return posts.filter((post) => post.id !== action.id);
+      return state.filter((post) => post.id !== action.id);
     case UPDATE:
-      return posts.map((post) =>
+      return state.map((post) =>
         Post._id === post._id ? action.payload : post
       );
     case FETCH_ALL:
-      return action.payload;
+      return {
+        ...state,
+        posts: action.payload.data,
+        currentPage: action.payload.currentPage,
+        numberOfPages: action.payload.numberOfPages,
+      };
     case FETCH_BY_SEARCH:
-      return action.payload;
+      return { ...state, posts: action.payload };
     case CREATE:
-      return [...posts, action.payload];
+      return [...state, action.payload];
     default:
-      return posts;
+      return state;
   }
 };
 
