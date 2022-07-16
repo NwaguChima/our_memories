@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 import Input from "./Input";
 import Icon from "./Icon";
+import { signup, signin } from "../../actions/auth";
 
 const initialState = {
   firstName: "",
@@ -38,6 +39,12 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(formData, navigate));
+    } else {
+      dispatch(signin(formData, navigate));
+    }
   };
 
   const handleChange = (e) => {
