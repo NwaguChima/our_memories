@@ -8,6 +8,7 @@ import {
   START_LOADING,
   END_LOADING,
   LIKE,
+  COMMENT,
 } from "../constants/actionTypes";
 import * as api from "../api";
 
@@ -44,7 +45,6 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     const {
       data: { data },
     } = await api.fetchPostsBySearch(searchQuery);
-    console.log("data", data);
     dispatch({ type: FETCH_BY_SEARCH, payload: data });
     dispatch({ type: END_LOADING });
   } catch (error) {
@@ -100,6 +100,11 @@ export const likePost = (id) => async (dispatch) => {
 
 export const commentPost = (value, id) => async (dispatch) => {
   try {
-    await api.comment(value, id);
-  } catch (error) {}
+    const { data } = await api.comment(value, id);
+
+    dispatch({ type: COMMENT, payload: data });
+    return data.comments;
+  } catch (error) {
+    console.log(error);
+  }
 };
