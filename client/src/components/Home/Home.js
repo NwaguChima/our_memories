@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Container, Grow, Grid, Paper } from "@material-ui/core";
+import {
+  Container,
+  Grow,
+  Grid,
+  Paper,
+  AppBar,
+  TextField,
+  Button,
+} from "@material-ui/core";
+import { useNavigate, useLocation } from "react-router-dom";
+import ChipInput from "material-ui-chip-input";
 import { useDispatch } from "react-redux";
 
 import { getPosts } from "../../actions/posts";
@@ -7,9 +17,17 @@ import Paginate from "../Pagination";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 const Home = () => {
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
+  const query = useQuery();
+  const navigate = useNavigate();
+  const page = query.get("page") || 1;
+  const searchQuery = query.get("searchQuery");
 
   useEffect(() => {
     dispatch(getPosts());
