@@ -16,6 +16,7 @@ const Paginate = ({ page }) => {
     if (page) {
       dispatch(getPosts());
     }
+    // eslint-disable-next-line
   }, [page]);
 
   return (

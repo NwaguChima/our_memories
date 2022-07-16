@@ -5,7 +5,6 @@ import useStyles from "./styles";
 
 import memoriesLogo from "../../images/memories-Logo.png";
 import memoriesText from "../../images/memories-Text.png";
-import memories from "../../images/memories.png";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -13,9 +12,7 @@ import decode from "jwt-decode";
 
 const Navbar = () => {
   const classes = useStyles();
-  const [user, setUser] = React.useState(
-    JSON.parse(localStorage.getItem("profile"))
-  );
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,6 +36,7 @@ const Navbar = () => {
     }
 
     setUser(JSON.parse(localStorage.getItem("profile")));
+    // eslint-disable-next-line
   }, [location]);
 
   return (

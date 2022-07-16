@@ -22,6 +22,7 @@ const PostDetails = () => {
 
   useEffect(() => {
     dispatch(getPost(id));
+    // eslint-disable-next-line
   }, [id]);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const PostDetails = () => {
         getPostsBySearch({ search: "none", tags: post?.tags?.join(",") })
       );
     }
+    // eslint-disable-next-line
   }, [post]);
 
   const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id);
