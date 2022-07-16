@@ -12,7 +12,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ChipInput from "material-ui-chip-input";
 import { useDispatch } from "react-redux";
 
-import { getPosts } from "../../actions/posts";
+import { getPosts, getPostsBySearch } from "../../actions/posts";
 import Paginate from "../Pagination";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
@@ -37,8 +37,17 @@ const Home = () => {
     dispatch(getPosts());
   }, [dispatch, currentId]);
 
+  const searchPost = () => {
+    if (search.trim()) {
+      dispatch(getPostsBySearch({ search, tags: tags.join("") }));
+    } else {
+      navigate(`/`);
+    }
+  };
+
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {
+      searchPost();
     }
   };
 
@@ -86,6 +95,14 @@ const Home = () => {
                 label="Search by tags"
                 variant="outlined"
               />
+              <Button
+                onClick={searchPost}
+                className={classes.searchButton}
+                color="primary"
+                variant="contained"
+              >
+                Search
+              </Button>
             </AppBar>
 
             <Form currentId={currentId} setCurrentId={setCurrentId} />
