@@ -7,8 +7,9 @@ import {
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
+import { getPost } from "../../actions/posts";
 import useStyles from "./styles";
 
 const PostDetails = () => {
@@ -17,6 +18,10 @@ const PostDetails = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(getPost(id));
+  }, [id]);
 
   return (
     <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
@@ -60,7 +65,7 @@ const PostDetails = () => {
             <strong>Realtime Chat - coming soon!</strong>
           </Typography>
           <Divider style={{ margin: "20px 0" }} />
-          <CommentSection post={post} />
+          {/* <CommentSection post={post} /> */}
           <Divider style={{ margin: "20px 0" }} />
         </div>
         <div className={classes.imageSection}>
