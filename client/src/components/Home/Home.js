@@ -42,6 +42,14 @@ const Home = () => {
     }
   };
 
+  const handleAdd = (tag) => {
+    setTags([...tags, tag]);
+  };
+
+  const handleDelete = (tag) => {
+    setTags(tags.filter((t) => t !== tag));
+  };
+
   return (
     <Grow in>
       <Container maxWidth="xl">
