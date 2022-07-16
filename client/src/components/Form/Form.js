@@ -3,6 +3,7 @@ import FileBase from "react-file-base64";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import useStyles from "./styles";
 import { createPost, updatePost } from "../../actions/posts";
@@ -16,12 +17,13 @@ const Form = ({ currentId, setCurrentId }) => {
   });
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((post) => post._id === currentId) : null
+    currentId ? state.posts.posts.find((post) => post._id === currentId) : null
   );
 
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (post) {
@@ -37,7 +39,7 @@ const Form = ({ currentId, setCurrentId }) => {
         updatePost(currentId, { ...postData, name: user?.result?.name })
       );
     } else {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name }, navigate));
     }
     clear();
   };
