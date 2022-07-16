@@ -9,10 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { useParams, useNavigate } from "react-router-dom";
 
-import useStyles from "./sytles";
+import useStyles from "./styles";
 
 const PostDetails = () => {
-  console.log("PostDetails");
+  const { post, posts, isLoading } = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const classes = useStyles();
+  const { id } = useParams();
 
   return <div>PostDetails</div>;
 };
