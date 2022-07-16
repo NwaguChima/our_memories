@@ -12,3 +12,15 @@ export const signin = (data, navigate) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const signup = (data, navigate) => async (dispatch) => {
+  try {
+    const result = await api.signup(data);
+
+    dispatch({ type: AUTH, data: { result } });
+
+    navigate("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
