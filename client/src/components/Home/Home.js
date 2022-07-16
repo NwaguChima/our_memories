@@ -38,8 +38,13 @@ const Home = () => {
   }, [dispatch, currentId]);
 
   const searchPost = () => {
-    if (search.trim()) {
+    if (search.trim() || tags.length) {
       dispatch(getPostsBySearch({ search, tags: tags.join("") }));
+      navigate(
+        `/posts/search?searchQuery=${search || "none"}&tags=${
+          tags.join(",") || "none"
+        }`
+      );
     } else {
       navigate(`/`);
     }
