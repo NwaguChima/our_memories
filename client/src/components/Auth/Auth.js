@@ -38,7 +38,6 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("signing");
 
     if (isSignup) {
       dispatch(signup(formData, navigate));
@@ -73,7 +72,6 @@ const Auth = () => {
   };
 
   const googleFailure = (response) => {
-    console.log("Google Sign In was unsuccessful", response);
     console.log(JSON.stringify(response, 2, null));
   };
 
