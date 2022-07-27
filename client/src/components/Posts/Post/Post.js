@@ -69,6 +69,7 @@ const Post = ({ post, setCurrentId }) => {
     navigate(`/posts/${post._id}`);
   };
 
+  console.log(post.selectedFile);
   return (
     <Card className={classes.card} raised elevation={6}>
       <ButtonBase
@@ -79,8 +80,9 @@ const Post = ({ post, setCurrentId }) => {
       >
         <CardMedia
           className={classes.media}
+          style={{ height: "50px" }}
           image={
-            post.selectedFile ||
+            post.selectedFile.default ||
             "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
           }
           title={post.title}
@@ -150,3 +152,45 @@ const Post = ({ post, setCurrentId }) => {
 };
 
 export default Post;
+
+<tbody>
+  {entity && Object.keys(entity) ? (
+    Object.keys(entity).map((key, ind) => {
+      if (!entity[key].value) return null;
+
+      return (
+        <tr key={key}>
+          <th>{entity[key] && entity[key].label}</th>
+          <td>
+            <div className={`pull-${display}`}>
+              {entity[key] && typeof entity[key] === "object"
+                ? entity[key].render || entity[key].value
+                : entity.key}
+            </div>
+          </td>
+        </tr>
+      );
+    })
+  ) : (
+    <tr></tr>
+  )}
+</tbody>;
+
+<tbody>
+  {entity && Object.keys(entity) ? (
+    Object.keys(entity).map((key, ind) => (
+      <tr key={key}>
+        <th>{entity[key] && entity[key].label}</th>
+        <td>
+          <div className={`pull-${display}`}>
+            {entity[key] && typeof entity[key] === "object"
+              ? entity[key].render || entity[key].value
+              : entity.key}
+          </div>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr></tr>
+  )}
+</tbody>;
